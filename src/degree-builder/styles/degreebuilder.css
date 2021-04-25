@@ -1,0 +1,40 @@
+@import './roboto-condensed/roboto-condensed.css';
+
+main{
+    font-family: 'Roboto Condensed';
+    padding-left: 30%;
+}
+
+h1{
+    font-size: 3.5rem;
+    font-weight: 500;
+    padding-left: 10%;
+}
+
+.drop-down-course{
+    display: flex; 
+    flex-direction:row;
+    padding-left: 1.5rem;
+}
+.drop-down-course h4{
+    margin-top: 0;
+}
+
+.drop-down{
+    display: flex; 
+    flex-direction:row;
+    align-items: 'center';
+    padding-bottom: 0.8rem;
+}
+
+.course-year{
+    padding-left: 1.5rem;
+}
+
+.drop-down button{
+    background-color: white;
+    border: none;
+}
+.drop-down h3{
+    margin:0;
+}
