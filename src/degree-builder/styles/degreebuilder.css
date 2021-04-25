@@ -38,3 +38,12 @@ h1{
 .drop-down h3{
     margin:0;
 }
+.can-select{
+    color:black;
+
+}
+.cannot-select{
+    color:grey;
+    font-style:italic;
+    margin-left: 1.3rem;
+}

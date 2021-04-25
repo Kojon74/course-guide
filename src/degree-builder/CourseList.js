@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import CourseDropDown from './CourseDropDown';
-function CourseList({title, courses, dropDowns, chosenCourses, updateChosen}){ 
-
+function CourseList({title, courses, dropDowns, selectedCourses, selDropCourses, setSelDropCourses}){ 
 
     return(
         <>
@@ -14,7 +13,8 @@ function CourseList({title, courses, dropDowns, chosenCourses, updateChosen}){
                 }
                 {   dropDowns && 
                     dropDowns.map((section) => {
-                        return <CourseDropDown title={section.title} courses={section.courses} limit={section.limit} updateLimit={section.updateLimit} chosenCourses={chosenCourses} updateChosen={updateChosen}/> 
+                        console.log("inside courselist, selected is" + section.selected)
+                        return <CourseDropDown title={section.title} courses={section.courses} limit={section.limit} updateLimit={section.updateLimit} selectedCourses={selectedCourses} selected={selDropCourses} setSelected={setSelDropCourses}/> 
                     })
                 }
             </div>
