@@ -2,10 +2,9 @@ import React, {useEffect, useState} from 'react';
 import { CaretForwardOutline } from 'react-ionicons';
 import { CaretDownOutline } from 'react-ionicons';
 
-function CourseDropDown({title, courses, limit, updateLimit, selectedCourses, selected, setSelected}){
+function CourseDropDown({title, courses, limit, updateLimit, selCourses, selElectives}){
 
     const [show, setShow] = useState(false);
-    console.log("selected is " + selected)
     return(
         <>
         <div className="drop-down">
@@ -30,7 +29,7 @@ function CourseDropDown({title, courses, limit, updateLimit, selectedCourses, se
             {
                 show && 
                 courses.map((course)=>{
-                    return <SingleCourse course={course} limit={limit} updateLimit={updateLimit} selectedCourses={selectedCourses} selected={selected} setSelected={setSelected}/>
+                    return <SingleCourse course={course} limit={limit} updateLimit={updateLimit} selCourses={selCourses} selElectives={selElectives}/>
                 })
             }
         </>
@@ -38,37 +37,29 @@ function CourseDropDown({title, courses, limit, updateLimit, selectedCourses, se
 
 }
 
-function SingleCourse({course, limit, updateLimit, selectedCourses, selected, setSelected}){
+function SingleCourse({course, limit, updateLimit, selCourses, selElectives}){
     
     //extract variables and call back functions
-    const selectedCoursesList = selectedCourses[0];
-    const setSelectedCourses = selectedCourses[1];
+    const selCoursesList = selCourses[0];
+    const setSelCourses = selCourses[1];
+
+    const selElectivesList = selElectives[0];
+    const setSelElectives = selElectives[1];
     
     const [checked, setChecked] = useState(false);
     const [canSelect, setCanSelect] = useState(false);
 
-    console.log(selected)
     useEffect(()=>{
-        if(!selectedCoursesList.includes(course) && selected.includes(course)){
-            setChecked(false);
-            setCanSelect(false);
-        }
-        else if(selectedCoursesList.includes(course)){
-            setChecked(true);
-            setCanSelect(true);
-        }
-        else{
-            setCanSelect(true);
-        }
+        setChecked(selCoursesList.includes(course))
     }, [])
     useEffect(()=>{
-        if(selected.includes(course) && !selectedCoursesList.includes(course)){
+        if(selElectivesList.includes(course) && !selCoursesList.includes(course)){
             setCanSelect(false);
         }
         else{
             setCanSelect(true)
         }
-    }, [selected]);
+    }, [selElectivesList]);
     
     const handleButton = () => {
         if(!canSelect)
@@ -77,23 +68,23 @@ function SingleCourse({course, limit, updateLimit, selectedCourses, selected, se
         if(checked){
             updateLimit(limit + 1);
             setChecked(false);
-            setSelectedCourses(selectedCoursesList.filter(c => c !== course));
-            setSelected(selected.filter(c => c !== course));
+            setSelCourses(selCoursesList.filter(c => c !== course));
+            setSelElectives(selElectivesList.filter(c => c !== course));
         }
 
         else{
             if(limit === 0)
                 return;
-            setChecked(true);
             updateLimit(limit - 1);
-            setSelectedCourses([course, ...selectedCoursesList]);
-            setSelected([course, ...selected]);
+            setChecked(true);
+            setSelCourses([course, ...selCoursesList]);
+            setSelElectives([course, ...selElectivesList]);
             
         }
     }
     return(
         <div className="drop-down-course">
-            {canSelect && <input type='checkbox' onChange={()=>{handleButton()}} checked={checked}/>} 
+            {canSelect && <input type='checkbox' onChange={()=>{handleButton()}} checked={checked} /> }
             <h4 className={canSelect ? 'can-select' : 'cannot-select'}>{course}</h4>
         </div>
     )
