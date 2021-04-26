@@ -1,0 +1,32 @@
+.degree-builder {
+  position: static;
+  font-size: 3.5rem;
+  font-weight: 400;
+  width: fit-content;
+  display: block;
+  margin: auto;
+}
+
+.specialization-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 2fr));
+}
+
+.specialization-card {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  margin: 25px auto;
+  padding: 15px;
+  box-sizing: border-box;
+  background-color: #031f4b;
+  color: white;
+  text-decoration: none;
+}
+
+.specialization-name {
+  margin: auto;
+  text-align: center;
+  font-size: 25px;
+}

@@ -1,102 +1,96 @@
-@import './roboto-condensed/roboto-condensed.css';
-
-main{
-    font-family: 'Roboto Condensed';
-    padding-left: 30%;
-    display:flex;
-    flex-direction: row;
-    align-items: center;
+main {
+  padding-left: 30%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
-h1{
-    font-size: 3.5rem;
-    font-weight: 500;
-    position:relative;
-    left: 4vw;
-
+.page_header {
+  font-size: 3.5rem;
+  font-weight: 500;
+  position: relative;
+  left: 4vw;
 }
-.course-selection{
-    
+.course-selection {
 }
-.drop-down-course{
-    display: flex; 
-    flex-direction:row;
-    padding-left: 1.5rem;
+.drop-down-course {
+  display: flex;
+  flex-direction: row;
+  padding-left: 1.5rem;
 }
-.drop-down-course h4{
-    margin-top: 0;
+.drop-down-course h4 {
+  margin-top: 0;
 }
 
-.drop-down{
-    display: flex; 
-    flex-direction:row;
-    align-items: 'center';
-    padding-bottom: 0.8rem;
+.drop-down {
+  display: flex;
+  flex-direction: row;
+  align-items: "center";
+  padding-bottom: 0.8rem;
 }
 
-.course-year{
-    padding-left: 1.5rem;
+.course-year {
+  padding-left: 1.5rem;
 }
 
-.drop-down button{
-    background-color: white;
-    border: none;
+.drop-down button {
+  background-color: white;
+  border: none;
 }
-.drop-down h3{
-    margin:0;
+.drop-down h3 {
+  margin: 0;
 }
-.can-select{
-    color:black;
-
+.can-select {
+  color: black;
 }
-.cannot-select{
-    color:grey;
-    font-style:italic;
-    margin-left: 1.3rem;
+.cannot-select {
+  color: grey;
+  font-style: italic;
+  margin-left: 1.3rem;
 }
 
 /* Degree Summary Styling */
-.degree-summary{
-    background-color: #031f4b;
-    color:#fbfbfb;
-    padding: 1rem 0rem 0 1rem;
-    position:fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
+.degree-summary {
+  background-color: #031f4b;
+  color: #fbfbfb;
+  padding: 1rem 0rem 0 1rem;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
 
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
-.degree-summary h2{
-    padding: 0 3rem 0 2rem;
-    font-weight: 300;
-    font-size: 2.2rem;
+.degree-summary h2 {
+  padding: 0 3rem 0 2rem;
+  font-weight: 300;
+  font-size: 2.2rem;
 }
-.degree-summary h3{
-    font-weight: 300;
-    font-size: 1.2rem;
-    margin-top: -0.5rem;
+.degree-summary h3 {
+  font-weight: 300;
+  font-size: 1.2rem;
+  margin-top: -0.5rem;
 }
-.degree-summary h4{
-    position:relative;
-    left: 1.5rem;
-    margin-top: -0.8rem;
-    font-size: 1.2rem;
-    font-weight: 300;
+.degree-summary h4 {
+  position: relative;
+  left: 1.5rem;
+  margin-top: -0.8rem;
+  font-size: 1.2rem;
+  font-weight: 300;
 }
-.degree-summary h5{
-    position: relative;
-    left: 2.5rem;
-    margin-top: -0.8rem;
-    font-size:1rem;
-    font-weight: 200;
+.degree-summary h5 {
+  position: relative;
+  left: 2.5rem;
+  margin-top: -0.8rem;
+  font-size: 1rem;
+  font-weight: 200;
 }
-.degree-summary button{
-    background-color: #031f4b;
-    color: #fbfbfb;
-    border: none;
+.degree-summary button {
+  background-color: #031f4b;
+  color: #fbfbfb;
+  border: none;
 }
-.summary-dropdown{
-    margin: 0;
+.summary-dropdown {
+  margin: 0;
 }
