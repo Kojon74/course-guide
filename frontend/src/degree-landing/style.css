@@ -20,10 +20,15 @@
   margin: 25px auto;
   padding: 15px;
   box-sizing: border-box;
-  background-color: #031f4b;
+  background-color: #04396C;
   color: white;
   text-decoration: none;
+  border-radius: 20%;
 }
+.specialization-card:hover{
+  background-color: #035B96;
+}
+
 
 .specialization-name {
   margin: auto;
