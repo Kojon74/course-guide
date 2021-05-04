@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Ellipse } from "react-ionicons";
 import { useLocation, useParams } from "react-router-dom";
 
 import CourseList from "./CourseList";
-import DegreeSummary from "./DegreeSummary";
 import "./styles/degreebuilder.css";
 
 function DegreeBuilder() {
@@ -25,69 +25,64 @@ function DegreeBuilder() {
   };
 
   const firstYearCourses = [
-    "PHYS 157 - Introductory Physics For Engineers I",
-    "PHYS 158 - Introductory Physics For Engineers II",
-    "APSC 101 - Introduction to Engineering II",
+    {title: "PHYS 157 - Introductory Physics For Engineers I", credits: 3} ,
+    {title: "PHYS 158 - Introductory Physics For Engineers II", credits: 3} ,
+    {title: "APSC 101 - Introduction to Engineering II", credits: 3} ,
   ];
   const secondYearCourses = [
-    "CPEN 211 - Introduction to Microcomputers",
-    "CPEN 221 - Principles of Software Construction",
-    "CPSC 261 - Basics of Computer Systems",
-    "CPSC 221 - Basic Algorithms and Data Structures",
-    "ELEC 201 - Circuit Analysis I",
-    "CPEN 291 - Computer Engineering Design Studio I",
-    "MATH 220 - Mathematical Proof",
-    "MATH 253 - Multivariable Calculus",
-    "MATH 256 - Differential Equations",
+    {title: "CPEN 211 - Introduction to Microcomputers", credits: 3},
+    {title: "CPEN 221 - Principles of Software Construction", credits: 3},
+    {title: "CPSC 261 - Basics of Computer Systems", credits: 3},
+    {title: "CPSC 221 - Basic Algorithms and Data Structures", credits: 3},
+    {title: "ELEC 201 - Circuit Analysis I", credits: 3},
+    {title: "CPEN 291 - Computer Engineering Design Studio I", credits: 3},
+    {title: "MATH 220 - Mathematical Proof", credits: 3},
+    {title: "MATH 253 - Multivariable Calculus", credits: 3},
+    {title: "MATH 256 - Differential Equations", credits: 3},
   ];
   const thirdYearCourses = [
-    "CPEN 331 - Operating Systems",
-    "ELEC 221 - Signals and Systems",
-    "CPEN 311 - Digital Systems Design",
-    "CPEN 391 - Computer Engineering Design Studio II",
+    {title: "CPEN 331 - Operating Systems", credits: 3}, 
+    {title: "ELEC 221 - Signals and Systems", credits: 3}, 
+    {title: "CPEN 311 - Digital Systems Design", credits: 3}, 
+    {title: "CPEN 391 - Computer Engineering Design Studio II", credits: 3}, 
   ];
   const fourthYearCourses = [
-    "CPEN 481 - Economic Analysis of Engineering Projects",
-    "CPEN 491 - Computer Engineering Capstone Design Project",
+    {title: "CPEN 481 - Economic Analysis of Engineering Projects", credits: 3},
+    {title: "CPEN 491 - Computer Engineering Capstone Design Project", credits: 3},
   ];
+  const technicalElectives = {
+    id: 1,
+    sectionTitle: "Technical Electives",  
+    creditLimit: 16,
+    courses: [
+                {title: "CPSC 320 - Intermediate Algorithm Design and Analysis", credits: 3},
+                {title: "CPSC 340 - Machine Learning and Data Mining", credits: 3},
+                {title: "CPSC 304 - Introduction to Relational Databases", credits: 3},
+             ]
+  };
+
+  const complementaryElectives = {
+    id: 2,
+    sectionTitle: "Complementary Electives",
+    creditLimit: 12,
+    courses: [
+              {title: "ECON 100 - Principles of Microeconomics", credits: 3},
+              {title: "APSC 450 - Professional Engineering Practice", credits: 3},
+             ]
+  };
+
+  const electives = [technicalElectives, complementaryElectives];
 
   const [techLimit, setTechLimit] = useState(3);
   const [compLimit, setCompLimit] = useState(3);
 
   const [selElectives, setSelElectives] = useState([]);
 
-  const [selCourses1, setSelCourses1] = useState([...firstYearCourses]);
-  const [selCourses2, setSelCourses2] = useState([...secondYearCourses]);
-  const [selCourses3, setSelCourses3] = useState([...thirdYearCourses]);
-  const [selCourses4, setSelCourses4] = useState([...fourthYearCourses]);
+  const [selCourses2, setSelCourses2] = useState([]);
+  const [selCourses3, setSelCourses3] = useState([]);
+  const [selCourses4, setSelCourses4] = useState([]);
 
-  const dropDowns = [
-    {
-      title: "Technical Electives",
-      limit: techLimit,
-      updateLimit: setTechLimit,
-      courses: [
-        "CPSC 320 - Intermediate Algorithm Design and Analysis",
-        "CPSC 340 - Machine Learning and Data Mining",
-        "CPSC 304 - Introduction to Relational Databases",
-        "ELEC 202 - Electric Circuits II",
-      ],
-    },
-    {
-      title: "Complementary Electives",
-      limit: compLimit,
-      updateLimit: setCompLimit,
-      courses: [
-        "ECON 100 - Principles of Microeconomics",
-        "APSC 450 - Professional Engineering Practice",
-      ],
-    },
-  ];
   const summary = [
-    {
-      title: "1st Year",
-      courses: selCourses1,
-    },
     {
       title: "2nd Year",
       courses: selCourses2,
@@ -102,40 +97,47 @@ function DegreeBuilder() {
     },
   ];
 
+  const [resetSearch, setResetSearch] = useState(false);
+  const [searchId, setSearchId] = useState(0);
+
   return (
     <main>
       <div className="course-selection">
         <h1 className="page-header">{specialization}</h1>
         <CourseList
-          title="1st Year"
-          courses={firstYearCourses}
-          selectedCourses={[selCourses1, setSelCourses1]}
-        />
-        <CourseList
+          id={100}
           title="2nd Year"
           courses={secondYearCourses}
-          dropDowns={dropDowns}
           selCourses={[selCourses2, setSelCourses2]}
           selElectives={[selElectives, setSelElectives]}
+          electives={electives}
+          resetSearch={[resetSearch, setResetSearch]}
+          searchId={[searchId, setSearchId]}
         />
         <CourseList
+          id={200}
           title="3rd Year"
           courses={thirdYearCourses}
-          dropDowns={dropDowns}
           selCourses={[selCourses3, setSelCourses3]}
           selElectives={[selElectives, setSelElectives]}
+          electives={electives}
+          resetSearch={[resetSearch, setResetSearch]}
+          searchId={[searchId, setSearchId]}
         />
         <CourseList
+          id={300}
           title="4th Year"
           courses={fourthYearCourses}
-          dropDowns={dropDowns}
           selCourses={[selCourses4, setSelCourses4]}
           selElectives={[selElectives, setSelElectives]}
+          electives={electives}
+          resetSearch={[resetSearch, setResetSearch]}
+          searchId={[searchId, setSearchId]}
         />
       </div>
-      <DegreeSummary summary={summary} electives={selElectives} />
     </main>
   );
 }
+
 
 export default DegreeBuilder;

@@ -1,5 +1,5 @@
 main {
-  padding-left: 30%;
+  padding-left: 28%;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -13,84 +13,58 @@ main {
 }
 .course-selection {
 }
-.drop-down-course {
-  display: flex;
-  flex-direction: row;
-  padding-left: 1.5rem;
-}
-.drop-down-course h4 {
-  margin-top: 0;
-}
 
-.drop-down {
-  display: flex;
-  flex-direction: row;
-  align-items: "center";
-  padding-bottom: 0.8rem;
-}
-
-.course-year {
+.course {
   padding-left: 1.5rem;
 }
 
-.drop-down button {
-  background-color: white;
-  border: none;
-}
-.drop-down h3 {
+/* Elective section styling */
+.elective-section-title{
+  display: flex;
+  flex-direction: row;
   margin: 0;
 }
-.can-select {
-  color: black;
+.elective-section-title:hover{
+  display: flex;
+  flex-direction: row;
+  color:#035B96;
 }
-.cannot-select {
-  color: grey;
-  font-style: italic;
-  margin-left: 1.3rem;
+.search-elective-section{
+  color: #035B96;
+  font-size: 1.2rem;
+  margin: 0.0rem;
+}
+.elective-section{
+  margin: 0.0rem;
 }
 
-/* Degree Summary Styling */
-.degree-summary {
+/* Elective search styling */
+.elective-search {
   background-color: #031f4b;
   color: #fbfbfb;
-  padding: 1rem 0rem 0 1rem;
+  padding: 1rem 1rem 0 1.5rem;
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
+  width: 27%;
 
   display: flex;
   flex-direction: column;
 }
-.degree-summary h2 {
-  padding: 0 3rem 0 2rem;
-  font-weight: 300;
-  font-size: 2.2rem;
-}
-.degree-summary h3 {
-  font-weight: 300;
-  font-size: 1.2rem;
-  margin-top: -0.5rem;
-}
-.degree-summary h4 {
-  position: relative;
-  left: 1.5rem;
-  margin-top: -0.8rem;
-  font-size: 1.2rem;
-  font-weight: 300;
-}
-.degree-summary h5 {
-  position: relative;
-  left: 2.5rem;
-  margin-top: -0.8rem;
-  font-size: 1rem;
-  font-weight: 200;
-}
-.degree-summary button {
-  background-color: #031f4b;
-  color: #fbfbfb;
-  border: none;
-}
-.summary-dropdown {
+.can-select{
+  font-size: 1.1rem;
   margin: 0;
+}
+.cannot-select {
+  color: lightgrey;
+  font-style: italic;
+  padding-left: 1.3rem;
+  font-size: 1.1rem;
+  margin: 0;
+}
+.search-course{
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 0.3rem;
 }
