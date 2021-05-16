@@ -88,11 +88,22 @@ function ElectiveSection({elective, selCourses, selElectives, resetSearch, searc
 }
 
 function ElectiveSearch({title, courses, selCourses, selElectives}){
+
+    const [query, setQuery] = useState(""); 
+    const handleTextChange = (event) => {
+        setQuery(event.target.value);
+    }
+
     return(
+
         <div className="elective-search">
             <h2>{title}</h2>
+            <input className="search-bar" type="text" onChange={handleTextChange} placeholder="Search..." value={query}></input>
             {
-                courses.map((course)=><ElectiveCourse title={course.title} credits={course.credits} selCourses={selCourses} selElectives={selElectives}/>)
+                courses.map((course)=>{
+                    if(course.title.toUpperCase().includes(query.toUpperCase()))
+                        return <ElectiveCourse title={course.title} credits={course.credits} selCourses={selCourses} selElectives={selElectives}/>
+                })
             }
         </div>
     )
@@ -112,10 +123,10 @@ function ElectiveCourse({title, credits, selCourses, selElectives}){
         // if it is checked, remove the element from both arrays
         if(checked){
           let newSelCourses = selCoursesList.filter((course)=>{
-            return course.title !== title;
+            return course.title.localeCompare(title) != 0;
           })
           let newSelElectives = selElectivesList.filter((course)=>{
-            return course.title !== title;
+            return course.title.localeCompare(title) != 0;
           })
           setSelCourses(newSelCourses);
           setSelElectives(newSelElectives);
@@ -131,7 +142,7 @@ function ElectiveCourse({title, credits, selCourses, selElectives}){
 
     const contains = (arr, title) => {
       for(let i = 0; i < arr.length; i++){
-        if(arr[i].title === title)
+        if(arr[i].title.localeCompare(title) === 0)
           return true;
       }
       return false;
@@ -149,6 +160,10 @@ function ElectiveCourse({title, credits, selCourses, selElectives}){
 
     useEffect(()=>{
         // assign canCheck
+
+        console.log("use effect for " + title)
+        //console.log(query)
+        console.log("checked is: " + checked)
         if(contains(selElectivesList, title)){
           if(contains(selCoursesList, title)){
             setCanCheck(true);  

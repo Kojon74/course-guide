@@ -68,3 +68,12 @@ main {
   flex-direction: row;
   padding-bottom: 0.3rem;
 }
+textarea:focus, input:focus{
+    outline: none;
+}
+.search-bar{
+  padding-left: 0.8rem;
+  height: 25px;
+  margin-bottom: 1em;
+  border-radius: 25px;
+}
