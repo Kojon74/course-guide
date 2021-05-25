@@ -53,7 +53,7 @@ function DegreeBuilder() {
   const technicalElectives = {
     id: 1,
     sectionTitle: "Technical Electives",  
-    creditLimit: 16,
+    creditLimit: [6, 9, 12], // for second year, third year, fourth year
     courses: [
                 {title: "CPSC 320 - Intermediate Algorithm Design and Analysis", credits: 3},
                 {title: "CPSC 340 - Machine Learning and Data Mining", credits: 3},
@@ -64,7 +64,7 @@ function DegreeBuilder() {
   const complementaryElectives = {
     id: 2,
     sectionTitle: "Complementary Electives",
-    creditLimit: 12,
+    creditLimit: [3, 6, 12],
     courses: [
               {title: "ECON 100 - Principles of Microeconomics", credits: 3},
               {title: "APSC 450 - Professional Engineering Practice", credits: 3},
@@ -105,7 +105,7 @@ function DegreeBuilder() {
       <div className="course-selection">
         <h1 className="page-header">{specialization}</h1>
         <CourseList
-          id={100}
+          id={200}
           title="2nd Year"
           courses={secondYearCourses}
           selCourses={[selCourses2, setSelCourses2]}
@@ -115,7 +115,7 @@ function DegreeBuilder() {
           searchId={[searchId, setSearchId]}
         />
         <CourseList
-          id={200}
+          id={300}
           title="3rd Year"
           courses={thirdYearCourses}
           selCourses={[selCourses3, setSelCourses3]}
@@ -125,7 +125,7 @@ function DegreeBuilder() {
           searchId={[searchId, setSearchId]}
         />
         <CourseList
-          id={300}
+          id={400}
           title="4th Year"
           courses={fourthYearCourses}
           selCourses={[selCourses4, setSelCourses4]}

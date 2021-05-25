@@ -31,7 +31,6 @@ main {
 }
 .search-elective-section{
   color: #035B96;
-  font-size: 1.2rem;
   margin: 0.0rem;
 }
 .elective-section{
@@ -51,6 +50,16 @@ main {
 
   display: flex;
   flex-direction: column;
+}
+.elective-search-title{
+  display:flex;
+  flex-direction: row;
+}
+.elective-search-close{
+  margin: 0;
+  position: fixed;
+  top: 2.1rem;
+  right: 2rem;
 }
 .can-select{
   font-size: 1.1rem;

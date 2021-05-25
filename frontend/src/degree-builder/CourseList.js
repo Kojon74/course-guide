@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { CaretForwardOutline } from 'react-ionicons';
 import { CaretDownOutline } from 'react-ionicons';
+import { CloseOutline } from 'react-ionicons';
 
 function CourseList({title, courses, selCourses, selElectives, electives, resetSearch, searchId, id}){ 
 
@@ -18,7 +19,7 @@ function CourseList({title, courses, selCourses, selElectives, electives, resetS
                electives.map((elective) => {
 
                     return(
-                        <ElectiveSection elective={elective} selCourses={selCourses} selElectives={selElectives} resetSearch={resetSearch} searchId={searchId} id={id + elective.id}/>
+                        <ElectiveSection elective={elective} selCourses={selCourses} selElectives={selElectives} resetSearch={resetSearch} searchId={searchId} id={id + elective.id} creditLimit={elective.creditLimit[id / 100 - 2]}/>
                     )
                }) 
             }
@@ -26,7 +27,7 @@ function CourseList({title, courses, selCourses, selElectives, electives, resetS
     );
 }
 
-function ElectiveSection({elective, selCourses, selElectives, resetSearch, searchId, id}){
+function ElectiveSection({elective, selCourses, selElectives, resetSearch, searchId, id, creditLimit}){
 
     const [selCoursesList, setSelCourses] = selCourses;
     const [resetSearchVar, setResetSearch] = resetSearch;
@@ -56,6 +57,15 @@ function ElectiveSection({elective, selCourses, selElectives, resetSearch, searc
         }
     }, [resetSearchVar, searchIdVar]);
 
+    const [creditCount, setCreditCount] = useState(0);
+    useEffect(() => {
+        let u_creditCount = 0
+        for(let i = 0; i < chosenElectives.length; i++){
+            u_creditCount += chosenElectives[i].credits;
+        }
+        setCreditCount(u_creditCount);
+    }, [chosenElectives])
+
     return(
         <>
             <div className="elective-section-title" onClick={()=>toggleSearch()}>
@@ -71,7 +81,7 @@ function ElectiveSection({elective, selCourses, selElectives, resetSearch, searc
                         width="20px"
                     />
                 }
-                <h3 className={search ? "search-elective-section" : "elective-section"}>{elective.sectionTitle}</h3>
+                <h3 className={search ? "search-elective-section" : "elective-section"}>{elective.sectionTitle} (Credits: {creditCount} / {creditLimit})</h3>
             </div>
             {
                 //TODO: Change so that an 'x' button shows up on hover, and the user is able to delete the button if they want
@@ -79,7 +89,7 @@ function ElectiveSection({elective, selCourses, selElectives, resetSearch, searc
             }
             {
                 search && 
-                <ElectiveSearch title={elective.sectionTitle} courses={elective.courses} selCourses={selCourses} selElectives={selElectives}/>
+                <ElectiveSearch title={elective.sectionTitle} courses={elective.courses} selCourses={selCourses} selElectives={selElectives} exitSearch={resetSearch}/>
             }
        </> 
     );
@@ -87,17 +97,31 @@ function ElectiveSection({elective, selCourses, selElectives, resetSearch, searc
 
 }
 
-function ElectiveSearch({title, courses, selCourses, selElectives}){
+function ElectiveSearch({title, courses, selCourses, selElectives, exitSearch}){
 
     const [query, setQuery] = useState(""); 
     const handleTextChange = (event) => {
         setQuery(event.target.value);
     }
 
+
+    const [resetSearch, setResetSearch] = exitSearch;
+
     return(
 
         <div className="elective-search">
-            <h2>{title}</h2>
+            <div className="elective-search-title">
+                <h2>{title}</h2>
+                <div className="elective-search-close">
+                    <CloseOutline
+                      color={'#fbfbfb'} 
+                      height="30px"
+                      width="30px"
+                      onClick={()=>{setResetSearch(!resetSearch)}}
+                    />
+                </div>
+            </div>
+            
             <input className="search-bar" type="text" onChange={handleTextChange} placeholder="Search..." value={query}></input>
             {
                 courses.map((course)=>{
